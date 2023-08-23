@@ -78,7 +78,7 @@ while True:
             else:
                 print("-"*10,"OPCION INCORRECTA" ,"-"*10)
         except ValueError:
-            print("-"*10,"ERROR. INGRESO SE INGRESO UNA LETRA","-"*10,"\nVuelva a ingresar Opcion")
+            print("-"*10,"ERROR. SE INGRESO UNA LETRA","-"*10,"\nVuelva a ingresar Opcion")
     #SALIDA DEL PROGRAMA SEGUN OPCION
     if opcion == 2 :
         break
