@@ -28,43 +28,48 @@ class Persona :
         self.__nombre = nombre
         self.__edad = edad
         self.__dni = dni
+        
 # Se crea la clase Cuenta(con titular,cantidad) y se hereda de Persona(nombre,edad,dni)
 class Cuenta(Persona):
-    def __init__(self,nombre,edad,dni,cantidad):
+    def __init__(self,nombre,edad,dni,saldo):
         super(). __init__(nombre,edad,dni)
-
-        self.__cantidad = cantidad
+        self.__saldo = saldo
+        
     #METODO PARA SABER SI ES MAYOR.
     def mayor_edad(self):
         if edad > 18 and edad < 25:
             return  "Si"
         else:
-            return  "No"    
+            return  "No"  
+
     #METODO PARA MOSTRAR
+    @property
     def Mostrar(self):
         return print(f"""
                     NOMBRE:{nombre}
                     EDAD:{edad}
                     DNI:{dni}
                     TITULAR:{self.mayor_edad()}
-                    CANTIDAD:{cantidad}""")
+                    SALDO:{saldo}""")
+        
     #METODO INGRESAR PLATA
     def IngresarSaldo(self,ingreso):
         self.__ingreso= ingreso
-        self.__cantidad = self.__cantidad + self.__ingreso
-        return print(f"SALDO ACTUAL: {self.__cantidad}")
+        self.__saldo = self.__saldo + self.__ingreso
+        return print(f"SALDO ACTUAL: {self.__saldo}")
+    
     #METODO SACAR PLATA
     def Retirar(self,retirar):
-        if retirar > cantidad:
+        if retirar > saldo:
             return print("Saldo insuficiente")
         else:
             self.__retirar = retirar
-            self.__cantidad = self.__cantidad - self.__retirar
-            return print(f"SALDO ACTUAL: {self.__cantidad}")
+            self.__saldo = self.__saldo - self.__retirar
+            return print(f"SALDO ACTUAL: {self.__saldo}")
 
 while True:
     print("--------BIENVENIDO A SU BANCO PERSONAL-------")
-    #VALIDACION DE OPCION
+    #VALIDACION DE OPCION 1er MENU
     while True:
         try:
             opcion  = int(input("Ingrese una opcion:\n[1]-Ingresar Usuario.\n[2]-Salir.\n-->"))
@@ -82,11 +87,11 @@ while True:
         nombre= input("Ingrese su nombre--> ")
         edad= int(input("Ingrese su edad--> "))
         dni= input("Ingrese su dni--> ")
-        cantidad = int(input("Ingrese cantidad de dinero--> "))
-        cuenta_1=Cuenta(nombre,edad,dni,cantidad)
-        cuenta_1.Mostrar()
+        saldo = int(input("Ingrese cantidad de dinero--> "))
+        cuenta_1=Cuenta(nombre,edad,dni,saldo)
+        cuenta_1.Mostrar
         if cuenta_1.mayor_edad() == "Si":
-            
+            # VALIDACION DE OPCIONES 2do MENU
             while True :
                 try:
                     opcion = int(input("INGRESE UNA OPCION:\n[1]-INGRESAR DINERO \n[2]-RETIRAR DINERO\n-->"))
@@ -105,6 +110,7 @@ while True:
                 cuenta_1.Retirar(retirar)
         else:
             print("No puede retirar plata\nNo cuenta con el tipo de titularidad.")
+    # VALIDACION DE OPCIONES 3er MENU
     while True:
         try:
             opcion=int(input("DESEA REALIZAR OTRA OPERACION?\n[1]SI\n[2]NO\n-->"))
