@@ -21,7 +21,7 @@ mayor de edad pero menor de 25 años y falso en caso contrario.
  Además, la retirada de dinero sólo se podrá hacer si el titular es válido.
  El método mostrar() debe devolver el mensaje de “Cuenta Joven” y la bonificación de la 
 cuenta"""
-
+import random
 # Se crea la clase Persona. Se le pide nombre,edad,dni.
 class Persona :
     def __init__(self,nombre,edad,dni):
@@ -29,20 +29,20 @@ class Persona :
         self.__edad = edad
         self.__dni = dni
         
-# Se crea la clase Cuenta(con titular,cantidad) y se hereda de Persona(nombre,edad,dni)
+# Crea una clase llamada Cuenta que tendrá los siguientes atributos: titular (que es una persona) y cantidad (puede tener decimales).
 class Cuenta(Persona):
     def __init__(self,nombre,edad,dni,saldo):
         super(). __init__(nombre,edad,dni)
         self.__saldo = saldo
         
-    #METODO PARA SABER SI ES MAYOR.
+    #En esta ocasión los titulares de este tipo de cuenta tienen que ser mayor de edad, por lo tanto hay que crear un método es_titular_valido() que devuelve verdadero si el titular es mayor de edad pero menor de 25 años y falso en caso contrario..
     def mayor_edad(self):
-        if edad > 18 and edad < 25:
+        if 18 <= edad <= 25:
             return  "Si"
         else:
             return  "No"  
 
-    #METODO PARA MOSTRAR
+    # mostrar(): Muestra los datos de la cuenta.
     @property
     def Mostrar(self):
         return print(f"""
@@ -52,13 +52,13 @@ class Cuenta(Persona):
                     TITULAR:{self.mayor_edad()}
                     SALDO:{saldo}""")
         
-    #METODO INGRESAR PLATA
+    #ingresar(cantidad): se ingresa una cantidad a la cuenta, si la cantidad introducida es negativa, no se hará nada.
     def IngresarSaldo(self,ingreso):
         self.__ingreso= ingreso
         self.__saldo = self.__saldo + self.__ingreso
         return print(f"SALDO ACTUAL: {self.__saldo}")
     
-    #METODO SACAR PLATA
+    #retirar(cantidad): se retira una cantidad a la cuenta. La cuenta puede estar en números rojos
     def Retirar(self,retirar):
         if retirar > saldo:
             return print("Saldo insuficiente")
@@ -79,7 +79,7 @@ while True:
                 print("-"*10,"OPCION INCORRECTA" ,"-"*10)
         except ValueError:
             print("-"*10,"ERROR. INGRESO SE INGRESO UNA LETRA","-"*10,"\nVuelva a ingresar Opcion")
-#SALIDA DEL PROGRAMA SEGUN OPCION
+    #SALIDA DEL PROGRAMA SEGUN OPCION
     if opcion == 2 :
         break
     else:
@@ -87,7 +87,7 @@ while True:
         nombre= input("Ingrese su nombre--> ")
         edad= int(input("Ingrese su edad--> "))
         dni= input("Ingrese su dni--> ")
-        saldo = int(input("Ingrese cantidad de dinero--> "))
+        saldo = random.randint(1000,100000)
         cuenta_1=Cuenta(nombre,edad,dni,saldo)
         cuenta_1.Mostrar
         if cuenta_1.mayor_edad() == "Si":
@@ -103,10 +103,10 @@ while True:
                     print("\nERROR. INGRESO INCORRECTO\nVuelva a ingresar Opcion")
                     
             if opcion == 1 :
-                ingreso = int(input("INGRESE EL MONTO A INGRESAR--> "))
+                ingreso = float(input("INGRESE EL MONTO A INGRESAR--> "))
                 cuenta_1.IngresarSaldo(ingreso)
             elif opcion == 2 : 
-                retirar = int(input("INGRESE EL MONTO A RETIRAR-->"))
+                retirar = float(input("INGRESE EL MONTO A RETIRAR-->"))
                 cuenta_1.Retirar(retirar)
         else:
             print("No puede retirar plata\nNo cuenta con el tipo de titularidad.")
