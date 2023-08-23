@@ -62,10 +62,6 @@ class Cuenta(Persona):
             self.__cantidad = self.__cantidad - self.__retirar
             return print(f"SALDO ACTUAL: {self.__cantidad}")
 
-
-    
-
-
 while True:
     print("--------BIENVENIDO A SU BANCO PERSONAL-------")
     #VALIDACION DE OPCION
@@ -77,7 +73,7 @@ while True:
             else:
                 print("-"*10,"OPCION INCORRECTA" ,"-"*10)
         except ValueError:
-            print("-"*10,"ERROR. INGRESO INCORRECTO","-"*10,"\nVuelva a ingresar Opcion")
+            print("-"*10,"ERROR. INGRESO SE INGRESO UNA LETRA","-"*10,"\nVuelva a ingresar Opcion")
 #SALIDA DEL PROGRAMA SEGUN OPCION
     if opcion == 2 :
         break
@@ -108,7 +104,7 @@ while True:
                 retirar = int(input("INGRESE EL MONTO A RETIRAR-->"))
                 cuenta_1.Retirar(retirar)
         else:
-            print("No puede retirar plata")
+            print("No puede retirar plata\nNo cuenta con el tipo de titularidad.")
     while True:
         try:
             opcion=int(input("DESEA REALIZAR OTRA OPERACION?\n[1]SI\n[2]NO\n-->"))
@@ -123,3 +119,4 @@ while True:
             
     
 print("::::::::::GRACIAS POR UTILIZAR EL PROGRAMA::::::::")
+
